@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: word-count-app
+spec:
+  replicas: 1  # Adjust based on load
+  selector:
+    matchLabels:
+      app: word-count
+  template:
+    metadata:
+      labels:
+        app: word-count
+    spec:
+      containers:
+        - name: word-count-api
+          image: your-dockerhub-username/word-count-api:latest  # Change to your built image
+          ports:
+            - containerPort: 8000
+--------
+apiVersion: v1
+kind: Service
+metadata:
+  name: word-count-service
+spec:
+  selector:
+    app: word-count
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: LoadBalancer  # Assuming on AWS 
