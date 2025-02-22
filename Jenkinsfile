@@ -5,7 +5,7 @@ pipeline {
         IMAGE_NAME = "word-count-api"
         DOCKER_REGISTRY = "your-dockerhub-username" // Change for private registry
         DOCKER_TAG = "latest"
-        KUBERNETES_DEPLOYMENT = "word-count-app"  // Name of your K8s deployment        TARGET_BRANCH = "main"  // Change this to your desired branch
+        KUBERNETES_DEPLOYMENT = "word-count-app"  // Name of your K8s deployment
     }
 
     stages {
