@@ -17,6 +17,7 @@ Jenkins - CI/CD automation
 Kubernetes - Deployment & orchestration
 
 AWS-EKS
+
 **Automating Deployment in Kubernetes**
 
 With the Jenkinsfile setup, every code change will:
