@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy FastAPI app and input file
 COPY app.py /app/
-COPY input.txt /app/
+COPY inputlog.txt /app/
 
 # Install dependencies
 RUN pip install fastapi uvicorn
