@@ -16,8 +16,7 @@ Jenkins - CI/CD automation
 
 Kubernetes - Deployment & orchestration
 
-AWS (Optional) - If using EKS & AWS Load Balancer Controller
-
+AWS-EKS
 **Automating Deployment in Kubernetes**
 
 With the Jenkinsfile setup, every code change will:
