@@ -11,8 +11,12 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
+		script {
+                    // Ensures the workspace is clean before cloning
+                    sh "rm -rf *"
+                }
                 git branch: 'main', url: 'https://github.com/dvrkittu/word-count/'
-            }
+	    }
         }
 
         stage('Build Docker Image') {
@@ -28,7 +32,8 @@ pipeline {
 	        script {
 	            withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', 
 	                                             usernameVariable: 'DOCKER_USERNAME', 
-	                                             passwordVariable: 'DOCKER_PASSWORD')]) {
+	                                             passwordVariable: 'DOCKER_PASSWORD')]) 
+			{
 	                sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
 	                sh "docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${DOCKER_TAG}"
 	            }
