@@ -41,7 +41,6 @@ pipeline {
                     sh """
 	            kubectl config set-context <your-k8s-context>
                     kubectl set image deployment/${KUBERNETES_DEPLOYMENT} word-count-api=${DOCKER_REGISTRY}/${IMAGE_NAME}:${DOCKER_TAG}
-                    kubectl rollout status deployment/${KUBERNETES_DEPLOYMENT}
                     """
                 }
             }
