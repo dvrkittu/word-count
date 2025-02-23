@@ -21,7 +21,8 @@ AWS-EKS
 **Automating Deployment in Kubernetes**
 
 With the Jenkinsfile setup, every code change will:
-✅ Trigger a Docker image build
-✅ Push the new image to Docker Hub
-✅ Update the Kubernetes deployment with the latest image
-✅ Restart the service to apply changes
+ 1. Webhook is created for jenkins 
+ 2. Trigger a Docker image build
+ 3. Push the new image to Docker Hub
+ 4. Update the Kubernetes deployment with the latest image
+ 5. Restart the service to apply changes
