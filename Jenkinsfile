@@ -23,16 +23,19 @@ pipeline {
             }
         }
 
-        stage('Push to Docker Registry') {
-            steps {
-                script {
-                    sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
-                    sh "docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${DOCKER_TAG}"
-                }
-            }
-        }
-
-        stage('Deploy to Kubernetes') {
+	stage('Push to Docker Registry') {
+	    steps {
+	        script {
+	            withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', 
+	                                             usernameVariable: 'DOCKER_USERNAME', 
+	                                             passwordVariable: 'DOCKER_PASSWORD')]) {
+	                sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
+	                sh "docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${DOCKER_TAG}"
+	            }
+	        }
+	    }
+	}
+	        stage('Deploy to Kubernetes') {
             steps {
                 script {
                     sh """
